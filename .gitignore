@@ -1,0 +1,12 @@
+# ide
+/.idea
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+yarn-error.log
+
+# sys
+.DS_Store

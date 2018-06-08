@@ -1,0 +1,14 @@
+{
+  "name": "vuepress-theme-flipbox",
+  "version": "1.0.0",
+  "description": "A VuePress documentation theme",
+  "author": "Flipbox Digital",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^0.10.0"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  }
+}
