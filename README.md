@@ -28,11 +28,10 @@ This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](htt
             }
         },
         markdown: {
-            anchor: { level: [2, 3] },
+            anchor: { level: [2, 3, 4] },
             toc: { includeLevel: [3] },
             config(md) {
-                let markup = require('vuepress-theme-flipbox/markup')
-                md.use(markup)
+                md.use(require('vuepress-theme-flipbox/markup'))
             }
         }
     }
