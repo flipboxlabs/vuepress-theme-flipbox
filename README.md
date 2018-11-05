@@ -1,13 +1,16 @@
-# Craft Documentation Theme for VuePress
+# Flipbox Documentation Theme for VuePress
 
-This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox plugin documentation](https://docs.craftcms.com/).
+This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](https://flipboxdigital.com/).
 
 ## Setup
 
-1. Require this theme
+1. [Install](https://vuepress.vuejs.org/guide/getting-started.html) VuePress like normal
+2. Require this theme in your project
 
     ```
     npm install -D vuepress-theme-flipbox
+    OR
+    yarn add -D vuepress-theme-flipbox
     ```
 
 3. Set these things in `.vuepress/config.js`:
@@ -22,6 +25,14 @@ This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox plug
                 php: 'PHP',
                 twig: 'Twig',
                 // any other languages you want to include in code toggles...
+            }
+        },
+        markdown: {
+            anchor: { level: [2, 3] },
+            toc: { includeLevel: [3] },
+            config(md) {
+                let markup = require('vuepress-theme-flipbox/markup')
+                md.use(markup)
             }
         }
     }
