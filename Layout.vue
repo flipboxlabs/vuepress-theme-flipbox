@@ -24,7 +24,7 @@ import Home from './Home.vue'
 import Navbar from './Navbar.vue'
 import Page from './Page.vue'
 import Sidebar from './Sidebar.vue'
-import { pathToComponentName, getTitle, getLang } from '@app/util'
+//import { pathToComponentName, getTitle, getLang } from '@app/util'
 import { resolveSidebarItems } from './util'
 
 export default {
@@ -149,5 +149,5 @@ function updateMetaTags (page, current) {
 }
 </script>
 
-<style src="prismjs/themes/prism-tomorrow.css"></style>
+<style src="prismjs/themes/prism-solarizedlight.css"></style>
 <style src="./styles/theme.styl" lang="stylus"></style>
