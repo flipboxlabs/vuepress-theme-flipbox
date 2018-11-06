@@ -54,3 +54,16 @@ You can create code toggles by wrapping multiple fenced code blocks with a `code
     :::
 
 (Use the same language handles defined by `themeConfig.codeLanguages` in `.vuepress/config.js`.)
+
+## Theme
+
+After ejecting VuePress we customized:
+
+- Added /styles/button.styl
+- Changed /styles/code.styl - Custom styling
+- Added ButtonLink.vue
+- Added CodeToggle.vue
+- Changed enhanceApp.js - Custom code
+- Changed Layout.vue - Use prism-solarizedlight.css
+- Added markup.js
+- Added Storage.js

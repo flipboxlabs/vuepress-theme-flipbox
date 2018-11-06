@@ -1,5 +1,5 @@
 const Token = require('markdown-it/lib/token');
-const container = require('markdown-it-container')
+const container = require('markdown-it-container');
 
 function findPrev(tokens, idx, check) {
     for (let i = idx - 1; i >= 0; i--) {

@@ -1,7 +1,7 @@
 export const hashRE = /#.*$/
 export const extRE = /\.(md|html)$/
 export const endingSlashRE = /\/$/
-export const outboundRE = /^(https?:|mailto:)/
+export const outboundRE = /^https?:/
 
 export function normalize (path) {
   return path
@@ -16,16 +16,8 @@ export function getHash (path) {
   }
 }
 
-export function isExternal (path) {
-  return outboundRE.test(path)
-}
-
-export function isMailto (path) {
-  return /^mailto:/.test(path)
-}
-
 export function ensureExt (path) {
-  if (isExternal(path)) {
+  if (outboundRE.test(path)) {
     return path
   }
   const hashMatch = path.match(hashRE)
@@ -46,7 +38,11 @@ export function isActive (route, path) {
   }
   const routePath = normalize(route.path)
   const pagePath = normalize(path)
-  return routePath === pagePath
+  if (endingSlashRE.test(routePath) || endingSlashRE.test(pagePath)) {
+    return routePath === pagePath
+  } else {
+    return routePath.indexOf(pagePath) === 0
+  }
 }
 
 export function resolvePage (pages, rawPath, base) {
@@ -104,22 +100,17 @@ function resolvePath (relative, base, append) {
   return stack.join('/')
 }
 
-export function resolveSidebarItems (page, route, site, localePath) {
+export function resolveSidebarItems (page, route, site) {
   const pageSidebarConfig = page.frontmatter.sidebar
   if (pageSidebarConfig === 'auto') {
     return resolveHeaders(page)
   }
   const { pages, themeConfig } = site
-
-  const localeConfig = localePath && themeConfig.locales
-    ? themeConfig.locales[localePath] || themeConfig
-    : themeConfig
-
-  const sidebarConfig = localeConfig.sidebar || themeConfig.sidebar
+  const sidebarConfig = themeConfig.sidebar
   if (!sidebarConfig) {
-    return []
+    return pages.map(p => Object.assign({ type: 'page' }, p))
   } else {
-    const { base, config } = resolveMatchingConfig(route, sidebarConfig)
+    const { base, config } = resolveMatchingSidebarConfig(route, sidebarConfig)
     return config
       ? config.map(item => resolveItem(item, pages, base))
       : []
@@ -156,24 +147,18 @@ export function groupHeaders (headers) {
   return headers.filter(h => h.level === 2)
 }
 
-export function resolveNavLinkItem (linkItem) {
-  return Object.assign(linkItem, {
-    type: linkItem.items && linkItem.items.length ? 'links' : 'link'
-  })
-}
-
-export function resolveMatchingConfig (route, config) {
-  if (Array.isArray(config)) {
+function resolveMatchingSidebarConfig (route, sidebarConfig) {
+  if (Array.isArray(sidebarConfig)) {
     return {
       base: '/',
-      config: config
+      config: sidebarConfig
     }
   }
-  for (const base in config) {
+  for (const base in sidebarConfig) {
     if (ensureEndingSlash(route.path).indexOf(base) === 0) {
       return {
         base,
-        config: config[base]
+        config: sidebarConfig[base]
       }
     }
   }
