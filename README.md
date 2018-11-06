@@ -60,13 +60,10 @@ After ejecting VuePress we customized:
 
 - Update Layout.vue
   - Comment out `import { pathToComponentName, getTitle, getLang } from '@app/util'`
-  - Change prism theme to prism-solarizedlight.css
+  - Change prism theme to `prism-solarizedlight.css`
 - Update config.styl
   - Change colors
   - Add `$lineNumbersWrapperWidth = 3.5rem`
-- Add /styles/button.styl
-- Update /styles/theme.styl
-  - Add `@require './button'` at top
 - Update /styles/code.styl - Custom styling
 - Add ButtonLink.vue
 - Add CodeToggle.vue
