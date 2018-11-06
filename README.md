@@ -23,6 +23,7 @@ This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](htt
             codeLanguages: {
                 php: 'PHP',
                 twig: 'Twig',
+                json: 'JSON',
                 // any other languages for the code toggles...
             }
         },
@@ -60,9 +61,9 @@ After ejecting VuePress we customized:
 
 - Update Layout.vue
   - Comment out `import { pathToComponentName, getTitle, getLang } from '@app/util'`
-  - Change prism theme to `prism-solarizedlight.css`
-- Update config.styl
-  - Change colors
+  - Change prism theme to `prism-coy.css`
+- Update /styles/config.styl
+  - Change colors (5 total)
   - Add `$lineNumbersWrapperWidth = 3.5rem`
 - Update /styles/code.styl - Custom styling
 - Add ButtonLink.vue
