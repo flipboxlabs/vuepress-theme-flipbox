@@ -1,11 +1,11 @@
 import Vuex from 'vuex'
+import ButtonLink from './ButtonLink'
 import CodeToggle from './CodeToggle'
-//import CodeLanguageSwitcher from './CodeLanguageSwitcher'
 import { setStorage } from './Storage'
 
 export default ({ Vue, options, router, siteData }) => {
+    Vue.component('button-link', ButtonLink)
     Vue.component('code-toggle', CodeToggle)
-    //Vue.component('code-language-switcher', CodeLanguageSwitcher)
 
     Vue.use(Vuex)
 
