@@ -1,93 +1,89 @@
+@require './config'
+
 .content
   code
-    display inline-block
+    color lighten($textColor, 20%)
+    padding 0.25rem 0.5rem
+    margin 0
+    font-size 0.85em
+    background-color rgba(27,31,35,0.05)
+    border-radius 3px
 
 .content
   pre, pre[class*="language-"]
-    padding 1.3rem !important
+    background-color $codeBgColor
+    line-height 1.4
+    border-radius 6px
+    padding 1.25rem 1.5rem
+    margin 0.85rem 0
+    white-space pre-wrap
+    word-break break-word
     overflow auto
-    border 1px solid #dfdfdf
-    background-image linear-gradient(transparent 50%, rgba(0, 0, 0, 0.015) 50%) !important
-    background-size 2.55em 2.55em !important
-    background-origin content-box !important
-    background-attachment local !important
-    &::before
-    &::after
-      content none
+    position relative
     code
-      color $textColor !important
+      color #fff
+      padding 0
+      background-color none
+      border-radius 0
+    &:before
+      position absolute
+      top 0.8em
+      right 1em
+      font-size 0.75rem
+      color rgba(255, 255, 255, 0.4)
+  .highlighted-line
+    background-color rgba(0, 0, 0, 66%)
+    display block
+    margin 0.1rem -1.5rem 0
+    padding 0.1rem 1.8rem
 
-      background-color transparent
-      border 0
-      width 100%
-      line-height 1.475
-    > code
-      box-shadow none
-      background-image none
+pre[class="language-js"], pre[class="language-javascript"]
+  &:before
+    content "js"
 
-.content {
-  .code-toggle {
-    margin: 0.85rem 0;
+pre[class="language-html"], pre[class="language-markup"]
+  &:before
+    content "html"
 
-    ul.code-language-switcher {
-      border-radius: 3px 3px 0 0;
-      background-color: #dfe2e5;
-    }
+pre[class="language-markdown"], pre[class="language-md"]
+  &:before
+    content "md"
 
-    pre, pre[class*="language-"] {
-      margin: 0;
-    }
-  }
+pre[class="language-vue"]:before
+  content "vue"
 
-  a.outbound-link {
-    color: lighten($textColor, 25%);
-    margin-right: 0.25rem;
-  }
+pre[class="language-css"]:before
+  content "css"
 
-  a + svg.outbound {
-    margin-left: 0.25rem;
-    position: relative;
-    top: 2px;
-  }
-}
+pre[class="language-sass"]:before
+  content "sass"
 
-ul.code-language-switcher {
-  height: $navbarHeight;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  margin: 0;
-  padding: 0.7rem .7rem;
-  font-size: 15px;
-  line-height: 1.4;
-  z-index: 2;
-  background: #999;
+pre[class="language-less"]:before
+  content "less"
 
-  li {
-    margin: 0 5px 0 0;
-    padding: 0;
-    list-style-type: none;
+pre[class="language-scss"]:before
+  content "scss"
 
-    a {
-      display: block;
-      padding: 0 0.625rem;
-      line-height: 2.2rem;
-      cursor: pointer;
-      border-radius: 4px;
-      color lighten($textColor, 20%)
+pre[class="language-stylus"]:before
+  content "stylus"
 
-      &:hover {
-        text-decoration: none !important;
+pre[class="language-json"]:before
+  content "json"
 
-        &:not(.active) {
-          background: rgba(255,255,255,0.5)
-        }
-      }
+pre[class="language-ruby"]:before
+  content "rb"
 
-      &.active {
-        cursor default
-        background-color #fff
-      }
-    }
-  }
-}
+pre[class="language-python"]:before
+  content "py"
+
+pre[class="language-go"]:before
+  content "go"
+
+pre[class="language-java"]:before
+  content "java"
+
+pre[class="language-c"]:before
+  content "c"
+
+pre[class="language-bash"]:before
+  content "sh"
