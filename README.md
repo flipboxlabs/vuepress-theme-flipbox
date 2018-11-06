@@ -8,9 +8,8 @@ This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](htt
 2. Require this theme in your project
 
     ```
+    npm install -D vuepress
     npm install -D vuepress-theme-flipbox
-    OR
-    yarn add -D vuepress-theme-flipbox
     ```
 
 3. Set these things in `.vuepress/config.js`:
@@ -24,7 +23,7 @@ This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](htt
             codeLanguages: {
                 php: 'PHP',
                 twig: 'Twig',
-                // any other languages you want to include in code toggles...
+                // any other languages for the code toggles...
             }
         },
         markdown: {
@@ -59,11 +58,18 @@ You can create code toggles by wrapping multiple fenced code blocks with a `code
 
 After ejecting VuePress we customized:
 
-- Added /styles/button.styl
-- Changed /styles/code.styl - Custom styling
-- Added ButtonLink.vue
-- Added CodeToggle.vue
-- Changed enhanceApp.js - Custom code
-- Changed Layout.vue - Use prism-solarizedlight.css
-- Added markup.js
-- Added Storage.js
+- Update Layout.vue
+  - Comment out `import { pathToComponentName, getTitle, getLang } from '@app/util'`
+  - Change prism theme to prism-solarizedlight.css
+- Update config.styl
+  - Change colors
+  - Add `$lineNumbersWrapperWidth = 3.5rem`
+- Add /styles/button.styl
+- Update /styles/theme.styl
+  - Add `@require './button'` at top
+- Update /styles/code.styl - Custom styling
+- Add ButtonLink.vue
+- Add CodeToggle.vue
+- Add Storage.js
+- Add markup.js
+- Change enhanceApp.js - Custom code
