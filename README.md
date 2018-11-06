@@ -65,6 +65,7 @@ After ejecting VuePress, the customizations are:
   - Change prism theme to `prism-coy.css`
 - Update /styles/config.styl
   - Change colors (5 total)
+  - Add `php` and `twig` to $codeLang
   - Add `@import '~@temp/override.styl'` at end
 - Update /styles/code.styl
   - Comment out `color #fff` for code block
