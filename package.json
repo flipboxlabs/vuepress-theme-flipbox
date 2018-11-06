@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-flipbox",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "vuepress-theme",
   "main": "index.js",
   "repository": "https://github.com/flipboxlabs/vuepress-theme-flipbox",
