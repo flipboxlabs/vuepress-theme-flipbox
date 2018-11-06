@@ -57,16 +57,15 @@ You can create code toggles by wrapping multiple fenced code blocks with a `code
 
 ## Theme
 
-After ejecting VuePress we customized:
+After ejecting VuePress customizations are:
 
+- Add ButtonLink.vue
+- Add CodeToggle.vue
+- Add markup.js
+- Add Storage.js
+- Update enhanceApp.js - Custom code
 - Update Layout.vue
   - Change prism theme to `prism-coy.css`
 - Update /styles/config.styl
   - Change colors (5 total)
-  - Add `$lineNumbersWrapperWidth = 3.5rem`
 - Update /styles/code.styl - Custom styling
-- Add ButtonLink.vue
-- Add CodeToggle.vue
-- Add Storage.js
-- Add markup.js
-- Change enhanceApp.js - Custom code

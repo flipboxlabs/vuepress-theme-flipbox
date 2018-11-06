@@ -18,7 +18,7 @@
     border-radius 6px
     overflow auto
     code
-      //color #fff
+      color #fff
       padding 0
       background-color transparent
       border-radius 0
@@ -36,7 +36,7 @@ div[class*="language-"]
     width 100%
     line-height 1.4
     .highlighted
-      background-color darken($codeBgColor, 5%)
+      background-color rgba(0, 0, 0, 66%)
   pre, pre[class*="language-"]
     background transparent
     position relative
@@ -53,17 +53,17 @@ div[class*="language-"]
       display none
   &.line-numbers-mode
     .highlight-lines .highlighted
-      position relative
-      &:before
-        content ' '
-        position absolute
-        z-index 3
-        left 0
-        top 0
-        display block
-        width $lineNumbersWrapperWidth
-        height 100%
-        background-color rgba(0, 0, 0, 66%)
+        position relative
+        &:before
+          content ' '
+          position absolute
+          z-index 3
+          left 0
+          top 0
+          display block
+          width $lineNumbersWrapperWidth
+          height 100%
+          background-color rgba(0, 0, 0, 66%)
     pre
       padding-left $lineNumbersWrapperWidth + 1 rem
       vertical-align middle

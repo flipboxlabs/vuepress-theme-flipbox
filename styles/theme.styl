@@ -3,6 +3,8 @@
 @require './code'
 @require './custom-blocks'
 @require './arrow'
+@require './wrapper'
+@require './toc'
 
 html, body
   padding 0
@@ -29,6 +31,15 @@ body
   box-sizing border-box
   border-bottom 1px solid $borderColor
 
+.sidebar-mask
+  position fixed
+  z-index 9
+  top 0
+  left 0
+  width 100vw
+  height 100vh
+  display none
+
 .sidebar
   font-size 15px
   background-color #fff
@@ -44,9 +55,7 @@ body
   overflow-y auto
 
 .content:not(.custom)
-  max-width $contentWidth
-  margin 0 auto
-  padding 2rem 2.5rem
+  @extend $wrapper
   > *:first-child
     margin-top $navbarHeight
   a:hover
@@ -61,6 +70,8 @@ body
 .content.custom
   padding 0
   margin 0
+  img
+    max-width 100%
 
 a
   font-weight 500
@@ -70,6 +81,13 @@ a
 p a code
   font-weight 400
   color $accentColor
+
+kbd
+  background #eee
+  border solid 0.15rem #ddd
+  border-bottom solid 0.25rem #ddd
+  border-radius 0.15rem
+  padding 0 0.15em
 
 blockquote
   font-size 1.2rem
@@ -120,15 +138,21 @@ a.header-anchor
   &:hover
     text-decoration none
 
-code
+code, kbd, .line-number
   font-family source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
 
 p, ul, ol
   line-height 1.7
 
+hr
+  border 0
+  border-top 1px solid $borderColor
+
 table
   border-collapse collapse
   margin 1rem 0
+  display: block
+  overflow-x: auto
 
 tr
   border-top 1px solid #dfe2e5
@@ -142,11 +166,19 @@ th, td
 .custom-layout
   padding-top $navbarHeight
 
-.theme-container.no-navbar
-  .content:not(.custom)
-    h1, h2, h3, h4, h5, h6
-      margin-top 1.5rem
+.theme-container
+  &.sidebar-open
+    .sidebar-mask
+      display: block
+  &.no-navbar
+    .content:not(.custom) > h1, h2, h3, h4, h5, h6
+        margin-top 1.5rem
+        padding-top 0
+    .sidebar
+      top 0
+    .custom-layout
       padding-top 0
+
 
 @media (min-width: ($MQMobile + 1px))
   .theme-container.no-sidebar
