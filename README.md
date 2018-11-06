@@ -1,19 +1,16 @@
 # Flipbox Documentation Theme for VuePress
 
-This is the [VuePress](https://vuepress.vuejs.org/) theme used for [Flipbox](https://flipboxdigital.com/).
+This is the [VuePress](https://v0.vuepress.vuejs.org/) theme used for [Flipbox](https://flipboxdigital.com/).
 
 ## Setup
 
-1. [Install](https://vuepress.vuejs.org/guide/getting-started.html) VuePress like normal
-2. Require this theme in your project
-
+1. Require VuePress and the Flipbox theme in your project
     ```
     npm install -D vuepress
     npm install -D vuepress-theme-flipbox
     ```
-
-3. Set these things in `.vuepress/config.js`:
-
+    
+2. Set config values in `.vuepress/config.js`:
     ```js
     module.exports = {
         // ...
@@ -57,15 +54,22 @@ You can create code toggles by wrapping multiple fenced code blocks with a `code
 
 ## Theme
 
-After ejecting VuePress customizations are:
+After ejecting VuePress, the customizations are:
 
 - Add ButtonLink.vue
 - Add CodeToggle.vue
 - Add markup.js
 - Add Storage.js
-- Update enhanceApp.js - Custom code
+- Add /styles/override.styl
 - Update Layout.vue
   - Change prism theme to `prism-coy.css`
 - Update /styles/config.styl
   - Change colors (5 total)
+  - Add `@import '~@temp/override.styl'` at end
+- Update /styles/code.styl
+  - Comment out `color #fff` for code block
+- Update enhanceApp.js - Custom code
 - Update /styles/code.styl - Custom styling
+- Run `npm login`
+- Run `npm version <1.0.X>`
+- Run `npm publish`
