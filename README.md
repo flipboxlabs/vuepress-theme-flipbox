@@ -60,7 +60,6 @@ You can create code toggles by wrapping multiple fenced code blocks with a `code
 After ejecting VuePress we customized:
 
 - Update Layout.vue
-  - Comment out `import { pathToComponentName, getTitle, getLang } from '@app/util'`
   - Change prism theme to `prism-coy.css`
 - Update /styles/config.styl
   - Change colors (5 total)
