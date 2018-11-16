@@ -59,17 +59,14 @@ After ejecting VuePress, the customizations are:
 - Add ButtonLink.vue
 - Add CodeToggle.vue
 - Add markup.js
-- Add /styles/override.styl
-- Update Layout.vue
-  - Change prism theme to `prism-coy.css`
+- Add /styles/override.styl - Custom code
 - Update /styles/config.styl
-  - Change colors (5 total)
+  - Change colors (7 colors, add sidebar and codeBg)
   - Add `php` and `twig` to $codeLang
   - Add `@import '~@temp/override.styl'` at end
-- Update /styles/code.styl
-  - Comment out `color #fff` for code block
-- Update enhanceApp.js - Custom code
 - Update /styles/code.styl - Custom styling
+  - Comment out `color #fff` for `.content pre code`
+- Update enhanceApp.js - Custom code
 - Run `npm login`
 - Run `npm version <1.0.X>`
 - Run `npm publish`
