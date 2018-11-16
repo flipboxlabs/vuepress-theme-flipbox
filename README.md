@@ -74,3 +74,12 @@ After ejecting VuePress, the customizations are:
 - Run `npm login`
 - Run `npm version <1.0.X>`
 - Run `npm publish`
+
+To dev locally, add the theme to your project package.json
+```json
+"devDependencies": {
+  ...
+  "vuepress-theme-flipbox": "file:../path/to/theme/vuepress-theme-flipbox"
+}
+```
+
