@@ -1,41 +1,83 @@
-.content
-  code
-    display inline-block
+// Converts a color to rgba(), extracting white values
+// hat tip https://stackoverflow.com/a/6672545/1688568
+toRgba(color)
+  r = red(color)
+  g = green(color)
+  b = blue(color)
+  min = min(r, g, b)
+  a = (255 - min) / 255
+  rA = (r - min) / a
+  gA = (g - min) / a
+  bA = (b - min) / a
+  "rgba(%s, %s, %s, %s)" % (rA gA bA a)
 
-.content
-  pre, pre[class*="language-"]
-    padding 1.3rem !important
-    overflow auto
-    border 1px solid #dfdfdf
-    background-image linear-gradient(transparent 50%, rgba(0, 0, 0, 0.015) 50%) !important
-    background-size 2.55em 2.55em !important
-    background-origin content-box !important
-    background-attachment local !important
-    &::before
-    &::after
-      content none
-    code
-      color $textColor !important
 
-      background-color transparent
-      border 0
-      width 100%
-      line-height 1.475
-    > code
-      box-shadow none
-      background-image none
 
 .content {
-  .code-toggle {
-    margin: 0.85rem 0;
+  dl {
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1.25rem 1.5rem;
+    line-height: 1.7;
+    background: $blockColor;
+    border-radius: 6px;
 
-    ul.code-language-switcher {
-      border-radius: 3px 3px 0 0;
-      background-color: #dfe2e5;
+    dt, dd {
+      margin: 0.25rem 0 0;
+      word-wrap: break-word;
     }
 
-    pre, pre[class*="language-"] {
-      margin: 0;
+    dt {
+      width: 9rem;
+      padding-right: 1rem;
+      box-sizing: border-box;
+      display: flex;
+      align-items: top;
+      justify-content: flex-end;
+      font-weight: bold;
+    }
+
+    dd {
+      width: calc(100% - 9rem);
+    }
+  }
+
+  tr:nth-child(2n) {
+    background-color $codeBgColor
+  }
+
+  code {
+    background toRgba($codeBgColor)
+  }
+
+  pre, pre[class*="language-"] {
+    white-space: pre;
+  }
+
+  .highlighted-line {
+    background-color darken($blockColor, 5%)
+  }
+
+  .code-toggle {
+    margin: 2rem 0;
+
+    ul.code-language-switcher {
+      border-radius: 6px 6px 0 0;
+    }
+
+    div[class*="language-"] {
+      border-radius: 0 0 6px 6px;
+
+      &:before {
+        display: none;
+      }
+    }
+
+    & > div > div[class*="language-"] {
+      & > pre,
+      & > pre[class*="language-"] {
+        margin: 0;
+      }
     }
   }
 
@@ -49,6 +91,25 @@
     position: relative;
     top: 2px;
   }
+
+  .custom-block {
+    div[class*="language-"] {
+      background: none;
+      border-radius: 0;
+      margin-left: -24px;
+      margin-right: -24px;
+
+      .highlight-lines {
+        padding-top: 0;
+      }
+
+      pre,
+      pre[class*="language-"] {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+  }
 }
 
 ul.code-language-switcher {
@@ -57,11 +118,11 @@ ul.code-language-switcher {
   display: flex;
   flex-direction: row;
   margin: 0;
-  padding: 0.7rem .7rem;
+  padding: 0.7rem 1.5rem;
   font-size: 15px;
   line-height: 1.4;
   z-index: 2;
-  background: #999;
+  background: darken($blockColor, 5%);
 
   li {
     margin: 0 5px 0 0;
@@ -88,6 +149,221 @@ ul.code-language-switcher {
         cursor default
         background-color #fff
       }
+    }
+  }
+}
+
+.theme-container.split {
+  .page {
+    & > ul.code-language-switcher {
+      position: fixed;
+      top: $navbarHeight;
+      padding: 0.7rem 2.5rem;
+    }
+  }
+}
+
+@media (min-width: $MQNarrow + 1) {
+  .theme-container.split {
+    .page {
+      position: relative;
+      width: "calc(50% - %s)" % ($sidebarWidth / 2);
+
+      &:after {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: "calc(50% - %s)" % ($sidebarWidth / 2);
+        background: $blockColor;
+        content: '.';
+        font-size: 0;
+      }
+
+      & > ul.code-language-switcher {
+        right: 0;
+        width: "calc(50% - %s)" % ($sidebarWidth / 2);
+      }
+
+      .content {
+        margin-right: 0;
+
+        .split {
+          margin: 0 -2.5rem;
+          width: calc(200% + 10rem);
+          display: flex;
+          flex-direction: row;
+
+          & > div {
+            z-index: 1;
+            width: 50%;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+            box-sizing: border-box;
+
+            &.right {
+              pre,
+              pre[class*="language-"] {
+                margin-left: -2.5rem;
+                margin-right: -2.5rem;
+                padding: 0 2.5rem;
+                white-space: pre-wrap;
+                background-color: transparent;
+
+                &:before {
+                  display: none;
+                }
+
+                .highlighted-line {
+                  margin: 0 -2.5rem;
+                  padding: 0 2.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// narrow desktop / iPad
+@media (max-width: $MQNarrow) {
+  .theme-container.split {
+    .page {
+      & > ul.code-language-switcher {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: "calc(100% - %s)" % ($sidebarWidth * 0.82);
+      }
+
+      .content {
+        & > *:first-child {
+          margin-top: $navbarHeight * 2;
+        }
+
+        & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+          &:first-child {
+            padding-top: 0;
+          }
+        }
+      }
+
+      pre, pre[class*="language-"] {
+        margin: 1em 0;
+        border-radius: 6px;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        margin-top: (0.5rem - $navbarHeight - $navbarHeight);
+        padding-top: ($navbarHeight + $navbarHeight + 1rem);
+      }
+    }
+  }
+}
+
+// wide mobile
+@media (max-width: $MQMobile) {
+  .theme-container.split {
+    .page {
+      & > ul.code-language-switcher {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// narrow mobile
+@media (max-width: $MQMobileNarrow) {
+  .theme-container.split {
+    .page {
+      & > ul.code-language-switcher {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+  }
+}
+
+div.table {
+  margin: 1rem 0;
+  border: 1px solid #dfe2e5;
+  overflow-x: auto;
+
+  table {
+    display: table;
+    margin: 0;
+    border: none;
+    width: 100%;
+
+    thead,
+    tbody:first-child {
+      tr:first-child {
+        &, th, td {
+          border-top: none;
+        }
+      }
+    }
+
+    tbody tr:last-child {
+      th, td {
+        border-bottom: none;
+      }
+    }
+
+    th, td {
+      &:first-child {
+        border-left: none;
+      }
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+div[class="language-php"]:before {
+  content: "php";
+}
+
+div[class="language-twig"]:before {
+  content: "twig";
+}
+
+.algolia-search-wrapper {
+  .algolia-autocomplete {
+    .ds-dropdown-menu {
+      padding: 0.7rem;
+    }
+
+    .algolia-docsearch-suggestion {
+      .algolia-docsearch-suggestion--category-header {
+        padding: 5px 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .algolia-docsearch-suggestion--subcategory-column {
+        background: none;
+      }
+
+      .algolia-docsearch-suggestion--category-header {
+        color: inherit;
+        background: none;
+      }
+    }
+
+    .algolia-docsearch-suggestion--highlight {
+      color: $accentColor;
+    }
+  }
+}
+
+.algolia-autocomplete {
+  .algolia-docsearch-suggestion--text {
+    .algolia-docsearch-suggestion--highlight {
+      box-shadow: none;
     }
   }
 }

@@ -32,5 +32,3 @@
     }
   }
 </script>
-
-<style src="prismjs/themes/prism-coy.css"></style>
