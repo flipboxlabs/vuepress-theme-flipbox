@@ -2,7 +2,11 @@
   <div class="code-toggle">
     <ul class="code-language-switcher">
       <li v-for="language in languages">
-        <a :class="{ active: language === selectedLanguage }" @click="setLanguage(language)">{{ $site.themeConfig.codeLanguages[language] }}</a>
+        <a :class="{ active: language === selectedLanguage }"
+           @click="setLanguage(language)"
+        >
+          {{ $site.themeConfig.codeLanguages[language] }}
+        </a>
       </li>
     </ul>
     <div v-for="language in languages">

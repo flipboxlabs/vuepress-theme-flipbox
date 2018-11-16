@@ -59,7 +59,6 @@ After ejecting VuePress, the customizations are:
 - Add ButtonLink.vue
 - Add CodeToggle.vue
 - Add markup.js
-- Add Storage.js
 - Add /styles/override.styl
 - Update Layout.vue
   - Change prism theme to `prism-coy.css`

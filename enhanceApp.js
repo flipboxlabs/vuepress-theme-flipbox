@@ -1,13 +1,9 @@
-import Vuex from 'vuex'
 import ButtonLink from './ButtonLink'
 import CodeToggle from './CodeToggle'
-import { setStorage } from './Storage'
 
 export default ({ Vue, options, router, siteData }) => {
     Vue.component('button-link', ButtonLink)
     Vue.component('code-toggle', CodeToggle)
-
-    Vue.use(Vuex)
 
     Vue.mixin({
         computed: {
@@ -25,23 +21,5 @@ export default ({ Vue, options, router, siteData }) => {
                     : selfTitle || 'VuePress'
             }
         }
-    })
-
-    Object.assign(options, {
-        data: {
-            codeLanguage: null,
-        },
-
-        store: new Vuex.Store({
-            state: {
-                codeLanguage: null
-            },
-            mutations: {
-                changeCodeLanguage(state, language) {
-                    state.codeLanguage = language;
-                    setStorage('codeLanguage', language);
-                }
-            }
-        })
     })
 }

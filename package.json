@@ -7,7 +7,6 @@
   "author": "Flipbox Digital",
   "license": "MIT",
   "private": false,
-  "dependencies": {
-    "vuex": "^3.0.1"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }
