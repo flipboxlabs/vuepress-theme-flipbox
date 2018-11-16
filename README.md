@@ -5,7 +5,7 @@ This is the [VuePress](https://v0.vuepress.vuejs.org/) theme used for [Flipbox](
 ## Setup
 
 1. Require VuePress and the Flipbox theme in your project
-    ```
+    ```bash
     npm install -D vuepress
     npm install -D vuepress-theme-flipbox
     ```
@@ -75,11 +75,9 @@ After ejecting VuePress, the customizations are:
 - Run `npm version <1.0.X>`
 - Run `npm publish`
 
-To dev locally, add the theme to your project package.json
-```json
-"devDependencies": {
-  ...
-  "vuepress-theme-flipbox": "file:../path/to/theme/vuepress-theme-flipbox"
-}
-```
+To dev locally, set the local theme dir as a dev dependency in the project's package.json
 
+    "devDependencies": {
+      ...
+      "vuepress-theme-flipbox": "file:../path/to/theme/vuepress-theme-flipbox"
+    }
